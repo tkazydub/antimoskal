@@ -12,6 +12,7 @@
 	<property name="password" value="lthgf" />
 </bean>
 
+
 <bean id="driverManager" class="dao.DriverManagerDAOJDBCFactory" lazy-init="true">
         <property name="url" value="localhost" />
 	<property name="user" value="root" />
