@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="ViewProduct" class="control.action.ViewProduct" lazy-init="true">
+</bean>
+
+<bean id="UpdateProduct" class="control.action.UpdateProduct" lazy-init="true">
+</bean>
+
+<bean id="DeleteProduct" class="control.action.DeleteProduct" lazy-init="true">
+</bean>
+
+<bean id="AddProduct" class="control.action.AddProduct" lazy-init="true">
+</bean>
+
+
+<bean id="controllerName" class="control.action.ActionFactory" lazy-init="true">
+	<constructor-arg index="0">
+		<map>
+			<entry key="/viewproduct" value-ref="ViewProduct"/>
+			<entry key="/updateproduct" value-ref="UpdateProduct"/>
+			<entry key="/deleteproduct" value-ref="DeleteProduct"/>
+			<entry key="/addproduct" value-ref="AddProduct"/>
+		</map>
+	</constructor-arg>
+</bean>
+
+</beans>
