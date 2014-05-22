@@ -47,7 +47,7 @@
              
             <br/>            
         
-        <a href = "/"> Back </a> 
+        <a href = "/antimoskal"> Back </a> 
         <jsp:include page="/WEB-INF/jspf/Footer.jspf" />
     </jsp:element>
 
