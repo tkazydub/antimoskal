@@ -7,7 +7,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="POST" action="/antimoskal/pages/viewproduct">
+        <form method="POST" action="/pages/viewproduct">
        		<table>
         		<tr>
         		<td>
