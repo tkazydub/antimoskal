@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
 <bean id="dataSource" class="dao.DataSourceDAOJDBCFactory" lazy-init="true">
 	<property name="serverName" value="localhost" />
-	<property name="portNumber" value="3306" />
+	<property name="portNumber" value="27017" />
 	<property name="databaseName" value="test" />
 	<property name="user" value="root" />
 	<property name="password" value="lthgf" />
+        <!--<property name="replicaSet" value="rs1">-->
+        
+        <property name="shards">
+            <map>
+            </map>
+        </property>
 </bean>
 
 <bean id="driverManager" class="dao.DriverManagerDAOJDBCFactory" lazy-init="true">

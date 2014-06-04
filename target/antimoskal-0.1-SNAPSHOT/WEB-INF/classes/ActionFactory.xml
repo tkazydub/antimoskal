@@ -10,6 +10,7 @@
 <bean id="UpdateProduct" class="control.action.UpdateProduct" lazy-init="true">
 </bean>
 
+
 <bean id="DeleteProduct" class="control.action.DeleteProduct" lazy-init="true">
 </bean>
 

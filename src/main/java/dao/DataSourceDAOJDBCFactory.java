@@ -4,9 +4,12 @@
  */
 package dao;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,6 +19,15 @@ public class DataSourceDAOJDBCFactory extends DAOFactory {
 	private String databaseName;
 	private String user;
 	private String password;
+        private Map<String, String> shards;
+
+    public Map<String, String> getShards() {
+        return shards;
+    }
+
+    public void setShards(Map<String, String> shards) {
+        this.shards = shards;
+    }
         private MongoClient mongo = null;
 	
 	public void setServerName(String serverName){
@@ -41,7 +53,7 @@ public class DataSourceDAOJDBCFactory extends DAOFactory {
     @Override
     public DB getConnection() {
         try {
-            mongo = new MongoClient();
+            mongo = new MongoClient(serverName, portNumber);
         } catch (UnknownHostException ex) {
             Logger.getLogger(DataSourceDAOJDBCFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,6 +61,12 @@ public class DataSourceDAOJDBCFactory extends DAOFactory {
         
         if(mongo!=null) {
             ds = mongo.getDB(databaseName);
+            for(String shardName : shards.keySet()) {
+                ds.command(new BasicDBObject("addShard", (shardName+":"+shards.get(shardName))));
+            }
+            if(shards.size() > 0) {
+                ds.command(new BasicDBObject("enablesharding", "products"));
+            }
         }
         
         return ds;
